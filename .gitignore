@@ -12,3 +12,6 @@ web-build/
 
 # macOS
 .DS_Store
+
+# removing assessment README
+client/README.md
