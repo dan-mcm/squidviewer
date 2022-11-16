@@ -10,13 +10,17 @@ Project is bootstrapped with two separate directories:
 - [x] Initalise git & commit changes
 - [x] Query data from endpoint
 - [x] Display all items in list (JSON.strinigfy them all successfully, tidying into sub-components atm)
-- [ ] When user clicks item, opens new screen displaying additional info (requires formatting/hiding data until selected)
-- [ ] Create filter lets user order by amount of vouchers (basic filter option, sort data response)
-- [ ] Tidy styling/codebase
+- [x] When user clicks item, opens new screen displaying additional info (data hidden, doesnt open new screen but keeps on current screen for better readability)
+- [x] Create filter lets user order by amount of vouchers (basic filter option, sort data response) (button added to enable filter by ascending order)
+- [ ] Add-in Social links for <Pocket/> Component
+- [ ] Tidy styling/formatting
 
 ## Initial Setup
 
 ### Client
+
+IMPORTANT NOTE: you will need to update your own IP address in App.js fetchSquidData() function in order to communicate between app & express server.
+
 Terminal 1:
 ```
 cd client
