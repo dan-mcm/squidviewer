@@ -1,25 +1,18 @@
 # Squidviewer
 
+[![code style: prettier](https://img.shields.io/badge/style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+
 Project is bootstrapped with two separate directories:
 * The client expo facing app bootstrapped from given code
 * An express server enabling communication to the provided API endpoint (bootstrapped from [express generator](https://expressjs.com/en/starter/generator.html))
-
-### WIP CHECKLIST STATUS
-(currently mocking simple components to display all data before tieing all together -> Pocket/Scheme data mostly done (need to modify for social media links), next up vouchers and tidying existing components)
-
-- [x] Initalise git & commit changes
-- [x] Query data from endpoint
-- [x] Display all items in list (JSON.strinigfy them all successfully, tidying into sub-components atm)
-- [x] When user clicks item, opens new screen displaying additional info (data hidden, doesnt open new screen but keeps on current screen for better readability)
-- [x] Create filter lets user order by amount of vouchers (basic filter option, sort data response) (button added to enable filter by ascending order)
-- [ ] Add-in Social links for <Pocket/> Component
-- [ ] Tidy styling/formatting
 
 ## Initial Setup
 
 ### Client
 
-IMPORTANT NOTE: you will need to update your own IP address in App.js fetchSquidData() function in order to communicate between app & express server.
+IMPORTANT NOTES:
+- You will need to update your own IP address in App.js fetchSquidData() function in order to communicate between app & express server.
+- When running on windows the following was required to bypass a cli error: `set NODE_OPTIONS=--openssl-legacy-provider`
 
 Terminal 1:
 ```
@@ -41,9 +34,9 @@ npm run start
 Can verify by going to localhost:3000/users/ to get a response.
 
 ## Environmental Variables
-Not featured on initial commit but due to potential sensitivity of data the api endpoint will be obfuscated through use of dotenv library. Similarly the initial codebase README will also remian hidden (added to .gitignore to hide)
+Due to potential sensitivity of data the api endpoint will be obfuscated through use of dotenv library. Similarly the initial codebase README will also remain hidden (added to .gitignore to hide)
 
-### Pretify Script
-Currently there is an additional script setup in client/package.json named `pretify` running this with the command `npm run pretify` should auto format code to be clean.
+### Additional Scripts
+* There is an additional script setup in client/package.json named `pretify` running this with the command `npm run pretify` should auto format code to be clean.
 
-This can be tied in at a later date with pre-commit hook or similar.
+These can be tied in at a later date with pre-commit hook or similar.

@@ -1,23 +1,13 @@
-import { StyleSheet, Text, View, Image, Button } from "react-native";
+import { View, Image, Linking } from "react-native";
 import { useState } from "react";
-// socials need adjusting...
-//
-// for (const [key, value] of Object.entries(props.pocket.socialLinks)) {
-//   <Text>`${key}: ${value}`</Text>
-// }
-//
-// Object.keys(props.pocket.socialLinks).forEach(function(key, index) {
-//   <Text>{key}: {props.pocket.socialLinks[key]}</Text>
-// })
+import { Button, Card, Text, SocialIcon, SocialIconProps } from "@rneui/themed";
 
-// TODO using 0 index image for now for cards, likely can be optimised to display best on whatever criteria needed
 function Pocket(props) {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
     <View
       style={{
-        backgroundColor: "brown",
         justifyContent: "center",
         alignItems: "center",
         padding: "0.5em",
@@ -26,30 +16,61 @@ function Pocket(props) {
       <Button
         title={isVisible ? "Hide Pocket" : "Show Pocket"}
         onPress={() => setIsVisible(!isVisible)}
+        color="secondary"
       />
       {isVisible ? (
         typeof props.pocket == "undefined" ? (
-          <Text>No Items in Pocket</Text>
+          <Card>
+            <Card.Title>No Items in Pockets</Card.Title>
+          </Card>
         ) : (
-          <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <Text>Pocket Name: {props.pocket.name}</Text>
-            <Image
-              source={{ uri: props.pocket.logoImage }}
-              style={{
-                width: 60,
-                height: 60,
-                textAlign: "center",
-                margin: "0.5em",
-              }}
-            />
-            <Text>Category: {props.pocket.category}</Text>
-            <Text>Address: {props.pocket.shortAddress}</Text>
-            <Text>Description: {props.pocket.description}</Text>
-            <Text>Socials TODO</Text>
-            {Object.entries(props.pocket.socialLinks).forEach((social) => {
-              const [key, value] = social;
-              return <Text>{`${key}: ${value}`}</Text>;
-            })}
+          <View style={{ textAlign: "left" }}>
+            <Card>
+              <Card.Title>{props.pocket.name}</Card.Title>
+              <Card.Divider />
+              <View style={{ justifyContent: "center", alignItems: "center" }}>
+                <Image
+                  source={{ uri: props.pocket.logoImage }}
+                  style={{
+                    width: 100,
+                    height: 100,
+                    textAlign: "center",
+                    margin: "0.5em",
+                  }}
+                />
+              </View>
+              <Text>
+                <Text style={{ fontWeight: "bold" }}>Category:</Text>{" "}
+                {props.pocket.category}
+              </Text>
+              <Text>
+                <Text style={{ fontWeight: "bold" }}>Address:</Text>{" "}
+                {props.pocket.shortAddress}
+              </Text>
+              <Text>
+                <Text style={{ fontWeight: "bold" }}>Description:</Text>{" "}
+                {props.pocket.description}
+              </Text>
+              <Text> </Text>
+              <Card.Divider />
+              <View
+                style={{
+                  flexDirection: "row",
+                }}
+              >
+                {Object.entries(props.pocket.socialLinks).map((socialMedia) => (
+                  // weird fault with this package locally, showing alternating icon backgrounds but not actual icons themselves...
+                  // further debugging/swapping with another package can be done
+                  <SocialIcon
+                    key={socialMedia[0] + socialMedia[1]}
+                    type={socialMedia[0]}
+                    onPress={() => {
+                      Linking.openURL(socialMedia[1]);
+                    }}
+                  />
+                ))}
+              </View>
+            </Card>
           </View>
         )
       ) : null}
