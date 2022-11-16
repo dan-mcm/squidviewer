@@ -15,3 +15,9 @@ web-build/
 
 # removing assessment README
 client/README.md
+
+# local env variables
+.env
+
+# local copy of api endpoint response for debugging
+server/utils.json

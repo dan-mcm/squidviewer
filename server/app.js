@@ -7,7 +7,10 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var cors = require('cors');
+
 var app = express();
+app.use(cors());
 
 // view engine setup
 app.use(logger('dev'));
@@ -35,7 +38,7 @@ app.use(function(err, req, res, next) {
   // res.render('error');
 });
 
-const port = 3000
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`Lstening on port ${port}`)
